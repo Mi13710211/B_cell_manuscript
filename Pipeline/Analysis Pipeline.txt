@@ -1,0 +1,60 @@
+# Analysis Pipeline 
+
+## Overview
+This pipeline outlines the data data wrangling, differential expression analysis, regression modeling, and correlation analysis.
+
+
+## 1. Input first Data
+- Bulk RNA-seq count matrix from the GEO dataset (GSE255720).
+
+
+## 2. Data Wrangling
+- Change column names and remove unnecessary rows/columns.
+
+- Filter out missing values in the gene_symbol column.
+
+- Replace gene_symbol with ENSEMBL_ID.
+
+- Set ENSEMBL_ID as row names. 
+
+- Convert count data to integers.
+
+- Remove genes with a total count lower than 10.
+
+## 3. Differential B cell-related Genes
+
+-  log2-transformation of count data
+
+-create a heatmap for CD19, CD79A, CD79B, SDC1, and PTPRC accross the samples
+
+## 4. Differential Expression Analysis Using DESeq2
+
+- Define conditions:
+  
+- Run DESeq2:
+  library(DESeq2)
+  dds <- DESeqDataSetFromMatrix(countData = count, colData = coldata, design = ~condition)
+  dds <- DESeq(dds)
+  ```
+
+## 5. GSEA and barplot
+
+- Imported the sgnificant differential genes with ENSEMBL_ID
+
+- Biological function analysis
+
+-Select the description of gene sets related to the B cells
+
+- Generate the barplot
+
+
+## 6. Visualization: Volcano Plot of Ig expression
+- Determin the constant region of Ig genes as the target genes
+
+- Turn off other genes
+
+-Generate the volcano plot 
+
+
+````````````````````````````````````````````````````````````````````````````````````````````````
+
